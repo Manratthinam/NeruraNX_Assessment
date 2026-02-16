@@ -1,0 +1,21 @@
+.task-list-container {
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.loading-indicator {
+  font-style: italic;
+  color: #666;
+}
+
+table {
+  width: 100%;
+}

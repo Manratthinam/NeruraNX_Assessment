@@ -1,0 +1,36 @@
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>Neuranx</h2>
+        </div>
+        <nav class="nav-links">
+            <a routerLink="/dashboard/my-tasks" routerLinkActive="active">My Tasks</a>
+            <a routerLink="/dashboard/all-tasks" routerLinkActive="active">All Tasks</a>
+            <a routerLink="/dashboard/create-task" routerLinkActive="active">Create Task</a>
+        </nav>
+    </aside>
+    <main class="main-content">
+        <header class="top-bar">
+            <h1>Dashboard</h1>
+        </header>
+        <div class="content-area">
+            <router-outlet></router-outlet>
+    
+        </div>
+    </main>
+
+    <!-- Simple Timeout Modal -->
+     @if (showTimeoutModal()) {
+<div class="modal-overlay" >
+        <div class="modal-content">
+            <h2>Session Timeout</h2>
+            <p>Your session is about to expire. Do you want to continue?</p>
+            <div class="modal-actions">
+                <button (click)="logout()">Logout</button>
+                <button class="primary" (click)="continueSession()">Continue</button>
+            </div>
+        </div>
+    </div>
+     }
+    
+</div>

@@ -1,0 +1,39 @@
+<div class="create-task-container">
+    <h2>{{this.title}}</h2>
+    <form [formGroup]="createTaskForm" (ngSubmit)="onSubmit()">
+
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" placeholder="Task title">
+            <mat-error *ngIf="createTaskForm.get('title')?.hasError('required')">Title is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" placeholder="Task description"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status">
+                <mat-option value="New">New</mat-option>
+                <mat-option value="Pending">Pending</mat-option>
+                <mat-option value="In Progress">In Progress</mat-option>
+                <mat-option value="Completed">Completed</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Assigned To</mat-label>
+            <mat-select formControlName="assignedToUserId">
+                @for (item of authService.users$ | async; track $index) {
+                    <mat-option [value]="item.id">
+                        {{item.userName}}
+                    </mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="createTaskForm.invalid">{{this.title}}</button>
+    </form>
+</div>

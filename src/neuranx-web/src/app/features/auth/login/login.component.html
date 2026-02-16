@@ -1,0 +1,53 @@
+<div class="login-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Login</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="Email" placeholder="Email">
+                    @if (loginForm.get('Email')?.hasError('email')) {
+                    <mat-error>
+                        Please enter a valid email address
+                    </mat-error>
+                    }
+                    @if (loginForm.get('Email')?.hasError('required')) {
+                    <mat-error>
+                        Email is required
+                    </mat-error>
+                    }
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="Password" placeholder="Password">
+                    @if (loginForm.get('Password')?.hasError('required')) {
+                    <mat-error>
+                        Password is required
+                    </mat-error>
+                    }
+                </mat-form-field>
+
+                @if (error() != '') {
+                <div class="error-message">
+                    {{ error() }}
+                </div>
+                }
+
+                <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">
+                    Login
+                </button>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <span class="register-link">
+                Don't have an account? <a routerLink="/auth/register">Register</a>
+            </span>
+        </mat-card-actions>
+    </mat-card>
+</div>
+@if (this.loader()) {
+    <app-loader></app-loader>
+}
